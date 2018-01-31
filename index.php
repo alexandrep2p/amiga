@@ -16,9 +16,77 @@
       $("#cep").mask("99.999-999");
       $("#telefone").mask("(99)9999-9999");
       $("#celular").mask("(99)99999-9999");
-      $("#email").mask("999.999.999-99");
     });
   </script>
+
+      <!-- Script VIACEP -->
+      <script type="text/javascript" >
+
+        $(document).ready(function() {
+
+            function limpa_formulário_cep() {
+                // Limpa valores do formulário de cep.
+                $("#rua").val("");
+                $("#bairro").val("");
+                $("#cidade").val("");
+                $("#uf").val("");
+                $("#ibge").val("");
+            }
+            
+            //Quando o campo cep perde o foco.
+            $("#cep").blur(function() {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if(validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#rua").val("...");
+                        $("#bairro").val("...");
+                        $("#cidade").val("...");
+                        $("#uf").val("...");
+                        $("#ibge").val("...");
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#rua").val(dados.logradouro);
+                                $("#bairro").val(dados.bairro);
+                                $("#cidade").val(dados.localidade);
+                                $("#uf").val(dados.uf);
+                                $("#ibge").val(dados.ibge);
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            });
+        });
+
+    </script>
 
   <body>
     <form id="regForm" action="/action_page.php">
@@ -38,20 +106,20 @@
       </div>
       <div class="tab">Endereço:
         <p><input id="cep" class="notNull" placeholder="CEP" oninput="this.className = ''" name="mil_cpf"></p>
-        <p><input class="notNull" placeholder="Endereço" oninput="this.className = ''" name="mil_endereco"></p>
+        <p><input id="rua" class="notNull" placeholder="Endereço" oninput="this.className = ''" name="mil_endereco"></p>
         <p><input placeholder="Numero" oninput="this.className = ''" name="mil_numeroEndereco"></p>
         <p><input placeholder="Complemento" oninput="this.className = ''" name="mil_complementoEndereco"></p>
-        <p><input class="notNull" placeholder="Bairro" oninput="this.className = ''" name="mil_bairro"></p>
-        <p><input class="notNull" placeholder="Cidade" oninput="this.className = ''" name="mil_cidade"></p>
-        <p><input class="notNull" placeholder="Estado/UF" oninput="this.className = ''" name="mil_estado"></p>
+        <p><input id="bairro" class="notNull" placeholder="Bairro" oninput="this.className = ''" name="mil_bairro"></p>
+        <p><input id="cidade" class="notNull" placeholder="Cidade" oninput="this.className = ''" name="mil_cidade"></p>
+        <p><input id="uf" class="notNull" placeholder="Estado/UF" oninput="this.className = ''" name="mil_estado"></p>
       </div>
       <div class="tab">Contatos:
         <p><input id="telefone" placeholder="Telefone: (XX) XXXX-XXXX" oninput="this.className = ''" name="mil_telefone"></p>
         <p><input id="celular" placeholder="Celular: (XX) XXXXX-XXXX" oninput="this.className = ''" name="mil_celular"></p>
-        <p><input id="email" class="notNull" placeholder="Email:" oninput="this.className = ''" name="mil_email"></p>
+        <p><input class="notNull" placeholder="Email:" oninput="this.className = ''" name="mil_email"></p>
       </div>
-      <div class="tab">Login Info:
-        <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+      <div class="tab">Eventos - Veterano:
+        <p></p>
         <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
       </div>
       <div style="overflow:auto;">
