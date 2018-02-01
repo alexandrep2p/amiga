@@ -1,0 +1,31 @@
+<html>
+<head>  
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>  
+<script type="text/javascript"> 
+id = 1; 
+$(document).ready(function() {
+    $("input[name='add']").click(function(e) {
+         id++;
+         var input = '<label for="form-email">Acompanhante/Convidado '+ id +'</label><input maxlength="45" type="text2" name="acompanhante1Nome" placeholder="Nome" class="form-email form-control" id="acompanhante'+ id +'Nome"><input maxlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text2" name="acompanhante1Rg" placeholder="RG:" class="form-email form-control" id="acompanhante'+id+'Rg"> <input maxlength="45" type="text2" name="acompanhante1Parentesco" placeholder="Parentesco" class="form-email form-control" id="acompanhante'+id+'Parentesco">';
+        $('#inputs_adicionais').append(input);  
+    });
+    $('#inputs_adicionais').delegate('a', 'click', function(e) {
+        e.preventDefault();
+        $(this).parent('label').remove();
+    });
+}); 
+</script>  
+</head>  
+<body>
+   <label style="display: block"><input type="button" name="add" value="Add" /></label> 
+         <label for="form-email">Acompanhante/Convidado 1</label>
+         <input maxlength="45" type="text2" name="acompanhante1Nome" placeholder="Nome" class="form-email form-control" id="acompanhante1Nome">
+         <input maxlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text2" name="acompanhante1Rg" placeholder="RG:" class="form-email form-control" id="acompanhante1Rg">
+         <input maxlength="45" type="text2" name="acompanhante1Parentesco" placeholder="Parentesco" class="form-email form-control" id="acompanhante1Parentesco">
+      <fieldset id="inputs_adicionais" style="border: none">  
+      </fieldset>
+   </form>
+</body>
+</html>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

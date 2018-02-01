@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="assets/style.css"><!--CSS do form, não é o bootstrap-->
   </head>
 
-  <!--Método para as máscaras dos inputs--> 
+  <!--Script para as máscaras dos inputs--> 
   <script type="text/javascript">
     $(document).ready(function(){
       $("#cpf").mask("999.999.999-99");
@@ -19,9 +19,8 @@
     });
   </script>
 
-      <!-- Script VIACEP -->
-      <script type="text/javascript" >
-
+  <!-- Script VIACEP -->
+  <script type="text/javascript" >
         $(document).ready(function() {
 
             function limpa_formulário_cep() {
@@ -85,7 +84,24 @@
                 }
             });
         });
+    </script>
 
+    <script>
+      id = 0; 
+      $(document).ready(function() {
+        $("input[name='add']").click(function(e) {
+          id++;
+          var input = '<label for="form-email">Acompanhante/Convidado '+ id +
+          '</label><input maxlength="45" type="text2" name="acompanhante1Nome" placeholder="Nome" class="form-email form-control" id="acompanhante'+ id +
+          'Nome"><input maxlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text2" name="acompanhante1Rg" placeholder="RG:" class="form-email form-control" id="acompanhante'+id+
+          'Rg"> <input maxlength="45" type="text2" name="acompanhante1Parentesco" placeholder="Parentesco" class="form-email form-control" id="acompanhante'+id+'Parentesco"></br></br>';
+        $('#inputs_adicionais').append(input);  
+      });
+      $('#inputs_adicionais').delegate('a', 'click', function(e) {
+        e.preventDefault();
+        $(this).parent('label').remove();
+      });
+    });
     </script>
 
   <body>
@@ -122,6 +138,12 @@
         <p></p>
         <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
       </div>
+      <div class="tab">Convidados:
+          <input type="button" name="add" value="Clique aqui para adicionar convidados / acompanhantes" />
+          <fieldset id="inputs_adicionais" style="border: none">  
+          </fieldset>
+
+        </div>
       <div style="overflow:auto;">
         <div style="float:right;">
           <button type="button" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
