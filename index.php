@@ -3,9 +3,9 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"><!--Fontes do form-->
-    <script type="text/javascript" src="assets/jquery.js"></script><!--Necessário para as mascaras dos inputs-->
-    <script type="text/javascript" src="assets/jquery.maskedinput.js"></script><!--Necessário para as mascaras dos inputs-->
-    <link rel="stylesheet" type="text/css" href="assets/style.css"><!--CSS do form, não é o bootstrap-->
+    <script type="text/javascript" src="assets/js/jquery.js"></script><!--Necessário para as mascaras dos inputs-->
+    <script type="text/javascript" src="assets/js/jquery.maskedinput.js"></script><!--Necessário para as mascaras dos inputs-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"><!--CSS do form, não é o bootstrap-->
   </head>
 
   <!--Script para as máscaras dos inputs--> 
@@ -91,10 +91,12 @@
       $(document).ready(function() {
         $("input[name='add']").click(function(e) {
           id++;
+          
           var input = '<label for="form-email">Acompanhante/Convidado '+ id +
-          '</label><input maxlength="45" type="text2" name="acompanhante1Nome" placeholder="Nome" class="form-email form-control" id="acompanhante'+ id +
-          'Nome"><input maxlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text2" name="acompanhante1Rg" placeholder="RG:" class="form-email form-control" id="acompanhante'+id+
-          'Rg"> <input maxlength="45" type="text2" name="acompanhante1Parentesco" placeholder="Parentesco" class="form-email form-control" id="acompanhante'+id+'Parentesco"></br></br>';
+              '</label><input maxlength="45" type="text2" name="acompanhante1Nome" placeholder="Nome" class="form-email form-control" id="acompanhante'+ id +
+              'Nome"><input maxlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text2" name="acompanhante1Rg" placeholder="RG:" class="form-email form-control" id="acompanhante'+id+
+              'Rg"> <input maxlength="45" type="text2" name="acompanhante1Parentesco" placeholder="Parentesco" class="form-email form-control" id="acompanhante'+id+
+              'Parentesco"><label class="container">Encontro na EEAR<input type="checkbox" id="convidadoEncontro + '+id+'"><span class="checkmark"></span></label><label class="container">Churrasco<input type="checkbox" id="convidadoConvidado + '+id+'"><span class="checkmark"></span></label></br></br>';
         $('#inputs_adicionais').append(input);  
       });
       $('#inputs_adicionais').delegate('a', 'click', function(e) {
@@ -105,11 +107,11 @@
     </script>
 
   <body>
-    <form id="regForm" action="/action_page.php">
-      <h1>16º Encontro - "De volta ao berço"</h1>
-      <p>Associação dos Militares Inativos de Guaratinguetá e Adjacências</p>
-      <p>R: Mórmons, no 51 – Pedregulho – Guaratinguetá/ SP – CEP: 12.515-100- tel: (12) 3125-7798/ 3125-7843</p>
-      <p>www.amigafa.com – email: encontrao@amigafa.com</p>
+      <form id="regForm" action="/action_page.php">
+        <h1>16º Encontro - "De volta ao berço"</h1>
+        <p>Associação dos Militares Inativos de Guaratinguetá e Adjacências</p>
+        <p>R: Mórmons, no 51 – Pedregulho – Guaratinguetá/ SP – CEP: 12.515-100- tel: (12) 3125-7798/ 3125-7843</p>
+        <p>www.amigafa.com – email: encontrao@amigafa.com</p>
       <!-- Cada "tab" é um step do form: -->
       <div class="tab">Dados Pessoais:
         <p><input id="cpf"class="notNull" placeholder="CPF" oninput="this.className = ''" name="mil_cpf"></p>
@@ -135,15 +137,36 @@
         <p><input class="notNull" placeholder="Email:" oninput="this.className = ''" name="mil_email"></p>
       </div>
       <div class="tab">Eventos - Veterano:
-        <p></p>
-        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+        <br/>
+        <!--Checkbox - colocar no metodo do convidado-->
+          <label class="container">Encontro na EEAR
+            <input type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Churrasco
+              <input type="checkbox">
+              <span class="checkmark"></span>
+          </label>
       </div>
       <div class="tab">Convidados:
           <input type="button" name="add" value="Clique aqui para adicionar convidados / acompanhantes" />
           <fieldset id="inputs_adicionais" style="border: none">  
           </fieldset>
+      </div>
+      <div class="tab">Alojamento - Somente fora do eixo Rio - SP:
+          <label class="containerRadio">Sim, gostaria de alojamento
+            <input type="radio" name="radioAlojamento" value="true">
+            <span class="radioCheck"></span>
+          </label>
+          <label class="containerRadio">Não vou precisar
+            <input type="radio" name="radioAlojamento" value="false">
+            <span class="radioCheck"></span>
+          </label>
+      </div>
+      <div class="tab">Itens Extra:
+        <p></p>
+      </div>
 
-        </div>
       <div style="overflow:auto;">
         <div style="float:right;">
           <button type="button" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
@@ -152,6 +175,9 @@
       </div>
       <!-- Bolinhas que marcam o progresso, colocar na quantidade de steps que tem no form: -->
       <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
@@ -233,5 +259,6 @@ function fixStepIndicator(n) {
   //... and adds the "active" class on the current step:
   x[n].className += " active";
 }
-  </script>
+</script>
+
 </html>
