@@ -1,0 +1,20 @@
+bd - amiga
+
+user - formsys
+pass -#@migaGta1
+--------------
+servidor - ftp41.redehost.com.br
+Endereço alternativo: ftp.encontrao.com.br
+
+user - encontrao.com.br
+pass ftp -$#Amig@5978
+---------------
+subdominio
+admin.encontrao.com.br
+---------------
+wordpress
+encontrao.com.br/wp
+
+encontrao.com.br/wp/wp-admin
+admin
+v@d*05KH

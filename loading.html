@@ -1,1 +1,72 @@
+<html>
+<head>
+<title>Por favor, aguarde ...</title>
+</head>
 <style>
+    body {
+        background-color: #f1f1f1;
+}
+
+h4 {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  font-weight: 200;
+  opacity: .5;
+	font-family: sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+h1 {
+    top:50%;
+  font-weight: 200;
+  opacity: .5;
+    font-family: sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+#container {
+  width: 70px;
+  height: 35px;
+  overflow: hidden;
+  position: absolute;
+  top: calc(50% - 17px);
+  left: calc(50% - 35px);
+}
+#loader {
+  width: 70px;
+  height: 70px;
+  border-style: solid;
+  border-top-color: rgb(255, 136, 0);
+  border-right-color: rgb(255, 136, 0);
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotate 3s ease-in-out infinite;
+  transform: rotate(-200deg)
+}
+@keyframes rotate {
+  0% { border-width: 10px; }
+  25% { border-width: 3px; }
+  50% { 
+    transform: rotate(115deg); 
+    border-width: 10px;
+  }
+  75% { border-width: 3px;}
+  100% { border-width: 10px;}
+}
+</style>
+<body>
+    <div id="container">
+        <div id="loader"></div>  
+    </div>
+    <div>
+        <h1>Você será redirecionado para o pagamento, por favor aguarde ...</h1>
+    </div>
+      
+      <h4>AMIGA - Associação dos Militares Inativos de Guaratinguetá e Adjacências</h4>
+</body>
+
+</html>
