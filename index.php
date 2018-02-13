@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"><!--Fontes do form-->
     <script type="text/javascript" src="assets/js/jquery.js"></script><!--Necessário para as mascaras dos inputs-->
     <script type="text/javascript" src="assets/js/jquery.maskedinput.js"></script><!--Necessário para as mascaras dos inputs-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css"><!--CSS do form, não é o bootstrap-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"><!--CSS do form-->
   </head>
 
   <!--Script para as máscaras dos inputs--> 
@@ -86,6 +86,7 @@
         });
     </script>
 
+    <!--Função para adicionar convidados-->
     <script>
       id = 0; 
       $(document).ready(function() {
@@ -96,7 +97,7 @@
               '</label><input maxlength="45" type="text2" name="acompanhante1Nome" placeholder="Nome" class="form-email form-control" id="acompanhante'+ id +
               'Nome"><input maxlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text2" name="acompanhante1Rg" placeholder="RG:" class="form-email form-control" id="acompanhante'+id+
               'Rg"> <input maxlength="45" type="text2" name="acompanhante1Parentesco" placeholder="Parentesco" class="form-email form-control" id="acompanhante'+id+
-              'Parentesco"><label class="container">Encontro na EEAR<input type="checkbox" id="convidadoEncontro + '+id+'"><span class="checkmark"></span></label><label class="container">Churrasco<input type="checkbox" id="convidadoConvidado + '+id+'"><span class="checkmark"></span></label></br></br>';
+              'Parentesco"><label class="container">Encontro na EEAR (R$ XXX,XX)<input type="checkbox" id="convidadoEncontro + '+id+'"><span class="checkmark"></span></label><label class="container">Churrasco R$ (XX,XXX)<input type="checkbox" id="convidadoConvidado + '+id+'"><span class="checkmark"></span></label></br></br>';
         $('#inputs_adicionais').append(input);  
       });
       $('#inputs_adicionais').delegate('a', 'click', function(e) {
@@ -106,14 +107,16 @@
     });
     </script>
 
-  <body>
+  <body style="background-image: url(images/bgloading.jpg); background-repeat:no-repeat; background-size: cover; background-clip: border-box;">
       <form id="regForm" action="/action_page.php">
         <h1>16º Encontro - "De volta ao berço"</h1>
         <p>Associação dos Militares Inativos de Guaratinguetá e Adjacências</p>
         <p>R: Mórmons, no 51 – Pedregulho – Guaratinguetá/ SP – CEP: 12.515-100- tel: (12) 3125-7798/ 3125-7843</p>
         <p>www.amigafa.com – email: encontrao@amigafa.com</p>
+        <br>
       <!-- Cada "tab" é um step do form: -->
-      <div class="tab">Dados Pessoais:
+      <div class="tab">
+        <p><b>Dados Pessoais - Complete as informações corretamente:</b></p>
         <p><input id="cpf"class="notNull" placeholder="CPF" oninput="this.className = ''" name="mil_cpf"></p>
         <p><input placeholder="RG Civil" oninput="this.className = ''" name="mil_rgCivil"></p>
         <p><input placeholder="RG Militar" oninput="this.className = ''" name="mil_rgMilitar"></p>
@@ -122,7 +125,8 @@
         <p><input placeholder="Posto/Graduação" oninput="this.className = ''" name="mil_postoGrad"></p>
         <p><input id="data" class="notNull" placeholder="Data de Formatura: DD/MM/AAAA" oninput="this.className = ''" name="mil_dataFormatura"></p>
       </div>
-      <div class="tab">Endereço:
+      <div class="tab">
+        <p><b>Endereço - Preencha o CEP para busca automática, logo em seguida insira o número e complemento (caso houver):</b></p>
         <p><input id="cep" class="notNull" placeholder="CEP" oninput="this.className = ''" name="mil_cpf"></p>
         <p><input id="rua" class="notNull" placeholder="Endereço" oninput="this.className = ''" name="mil_endereco"></p>
         <p><input placeholder="Numero" oninput="this.className = ''" name="mil_numeroEndereco"></p>
@@ -131,30 +135,32 @@
         <p><input id="cidade" class="notNull" placeholder="Cidade" oninput="this.className = ''" name="mil_cidade"></p>
         <p><input id="uf" class="notNull" placeholder="Estado/UF" oninput="this.className = ''" name="mil_estado"></p>
       </div>
-      <div class="tab">Contatos:
+      <div class="tab">
+        <p><b>Contatos - Favor preencher com dados atualizados</b></p>
         <p><input id="telefone" placeholder="Telefone: (XX) XXXX-XXXX" oninput="this.className = ''" name="mil_telefone"></p>
         <p><input id="celular" placeholder="Celular: (XX) XXXXX-XXXX" oninput="this.className = ''" name="mil_celular"></p>
         <p><input class="notNull" placeholder="Email:" oninput="this.className = ''" name="mil_email"></p>
       </div>
-      <div class="tab">Eventos - Veterano:
-        <br/>
-        <!--Checkbox - colocar no metodo do convidado-->
-          <label class="container">Encontro na EEAR
+      <div class="tab">
+        <p><b>Eventos - Clique nos eventos que o veterano irá participar:</b></p>
+          <label class="container">Encontro na EEAR (R$ XXX,XX)
             <input type="checkbox">
             <span class="checkmark"></span>
           </label>
-          <label class="container">Churrasco
+          <label class="container">Churrasco (R$ XXX,XX)
               <input type="checkbox">
               <span class="checkmark"></span>
           </label>
       </div>
-      <div class="tab">Convidados:
+      <div class="tab">
+        <p><b>Convidados - Clique no botão abaixo para adicionar um convidado, preencha os dados e clique nos eventos que irá participar:</b></p>
           <input type="button" name="add" value="Clique aqui para adicionar convidados / acompanhantes" />
           <fieldset id="inputs_adicionais" style="border: none">  
           </fieldset>
       </div>
-      <div class="tab">Alojamento - Somente fora do eixo Rio - SP:
-          <label class="containerRadio">Sim, gostaria de alojamento
+      <div class="tab">
+        <p><b>Alojamento - Atenção: Somente para convidados que morem fora do eixo Rio-São Paulo:</b></p>
+          <label class="containerRadio">Sim, preciso de alojamento
             <input type="radio" name="radioAlojamento" value="true">
             <span class="radioCheck"></span>
           </label>
@@ -163,9 +169,23 @@
             <span class="radioCheck"></span>
           </label>
       </div>
-      <div class="tab">Itens Extra:
-        <p></p>
+      <div class="tab">
+        <p><b>Itens Extra - Caso queira pedir itens extras, selecione aqui a quantidade e tamanho:</b></p>
+        <br>
+        <p><label><b>Camisetas Extras</b></label></p>
+        <p>P&nbsp;<input type="number" value="0" style="width: 10%"/>&nbsp;&nbsp;
+        M&nbsp;<input type="number" value="0" style="width: 10%"/>&nbsp;&nbsp;
+        M&nbsp;<input type="number" value="0" style="width: 10%"/>&nbsp;&nbsp;
+        GG&nbsp;<input type="number" value="0" style="width: 10%"/>&nbsp;&nbsp;
+        XG&nbsp;<input type="number" value="0" style="width: 10%"/>&nbsp;&nbsp;
+        XGG&nbsp;<input type="number" value="0" style="width: 10%"/></p>
+        <p><label><b>Bonés Extras</b></label></p>
+        <p>Tamanho único<input type="number" value="0" style="width: 10%"/></p>
       </div>
+      <div class="tab">
+          <p><b>Revisão - Por favor, verifique se todos os dados estão corretos. Caso queira mudar algo, clique em Voltar até o item desejado para alteração</b></p>
+          <p>COLOCAR TUDO DO FORM</p>
+        </div>
 
       <div style="overflow:auto;">
         <div style="float:right;">
@@ -175,6 +195,7 @@
       </div>
       <!-- Bolinhas que marcam o progresso, colocar na quantidade de steps que tem no form: -->
       <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
@@ -201,7 +222,7 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Enviar";
+    document.getElementById("nextBtn").innerHTML = "Tudo certo, vamos para o pagamento";
   } else {
     document.getElementById("nextBtn").innerHTML = "Próximo";
   }

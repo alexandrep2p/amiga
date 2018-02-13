@@ -30,6 +30,10 @@
     font-family: Raleway;
     border: 1px solid #aaaaaa;
   }
+
+  input[type="number"]{
+    width: 10%;
+  }
   
   /* Altera cor dos inputs que são requireds */
   input.invalid {
@@ -42,7 +46,7 @@
   }
   
   button {
-    background-color: #4CAF50;
+    background-color: rgb(79, 149, 255);
     color: #ffffff;
     border: none;
     padding: 10px 20px;
@@ -56,7 +60,7 @@
   }
   
   #prevBtn {
-    background-color: #bbbbbb;
+    background-color: #ffffff;
   }
   
   /* Bolinhas que mostram o progresso do formulario */

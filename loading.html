@@ -1,28 +1,26 @@
 <html>
 <head>
-<title>Por favor, aguarde ...</title>
+<title>Encontrão AMIGA</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
+
 <style>
     body {
         background-color: #f1f1f1;
+        background-image: url(images/bgloading.jpg);
+        background-repeat:no-repeat;
+        background-size: cover;
+        background-clip: border-box;
 }
 
-h4 {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  margin: 0;
-  font-weight: 200;
-  opacity: .5;
-	font-family: sans-serif;
-  color: rgb(0, 0, 0);
-}
 
 h1 {
-    top:50%;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
   font-weight: 200;
-  opacity: .5;
-    font-family: sans-serif;
+  opacity: .8;
+  font-family: sans-serif;
   color: rgb(0, 0, 0);
 }
 
@@ -34,6 +32,13 @@ h1 {
   top: calc(50% - 17px);
   left: calc(50% - 35px);
 }
+
+#title {
+  position: relative;
+  width: 100%;
+}
+
+
 #loader {
   width: 70px;
   height: 70px;
@@ -58,15 +63,14 @@ h1 {
   100% { border-width: 10px;}
 }
 </style>
+
 <body>
-    <div id="container">
-        <div id="loader"></div>  
-    </div>
-    <div>
-        <h1>Você será redirecionado para o pagamento, por favor aguarde ...</h1>
-    </div>
-      
-      <h4>AMIGA - Associação dos Militares Inativos de Guaratinguetá e Adjacências</h4>
+  <div id="title">
+    <h1>Aguarde, em breve teremos novidades !</h1>
+  </div>   
+  <div id="container">
+    <div id="loader"></div>  
+  </div>
 </body>
 
 </html>
