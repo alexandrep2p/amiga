@@ -2,6 +2,7 @@
 <html lang="pt-br">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"><!--Fontes do form-->
     <script type="text/javascript" src="assets/js/jquery.js"></script><!--Necessário para as mascaras dos inputs-->
     <script type="text/javascript" src="assets/js/jquery.maskedinput.js"></script><!--Necessário para as mascaras dos inputs-->
