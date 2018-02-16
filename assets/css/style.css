@@ -232,3 +232,8 @@
   border-radius: 50%;
   background: white;
 }
+
+#sidebyside{
+  float: left;
+  padding-right: 2%;
+}

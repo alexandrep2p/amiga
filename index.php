@@ -89,17 +89,19 @@
 
     <!--Função para adicionar convidados-->
     <script>
-      id = 0; 
-      $(document).ready(function() {
-        $("input[name='add']").click(function(e) {
-          id++;
-          
-          var input = '<label for="form-email">Acompanhante/Convidado '+ id +
+    id = 0; 
+    $(document).ready(function() {
+      $("input[name='add']").click(function(e) {
+        id++;
+
+var input = '<label for="form-email">Acompanhante/Convidado '+ id +
               '</label><input maxlength="45" type="text2" name="acompanhante1Nome" placeholder="Nome" class="form-email form-control" id="acompanhante'+ id +
               'Nome"><input maxlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text2" name="acompanhante1Rg" placeholder="RG:" class="form-email form-control" id="acompanhante'+id+
               'Rg"> <input maxlength="45" type="text2" name="acompanhante1Parentesco" placeholder="Parentesco" class="form-email form-control" id="acompanhante'+id+
-              'Parentesco"><label class="container">Encontro na EEAR (R$ XXX,XX)<input type="checkbox" id="convidadoEncontro + '+id+'"><span class="checkmark"></span></label><label class="container">Churrasco R$ (XX,XXX)<input type="checkbox" id="convidadoConvidado + '+id+'"><span class="checkmark"></span></label></br></br>';
-        $('#inputs_adicionais').append(input);  
+              'Parentesco"><label class="container">Encontro na EEAR (R$ XXX,XX)<input type="checkbox" id="convidadoEncontro + '+id+'"><span class="checkmark"></span></label><label class="container">Churrasco R$ (XX,XXX)<input type="checkbox" id="convidadoConvidado + '+id+
+              '"><span class="checkmark"></span></label><p><b>Selecione o tamanho da camiseta que irá compor o Kit Brinde (Camiseta, boné, bolsa, caneta e bloco de rascunho) - ATENÇÂO: Caso participe somente do evento "Churrasco", este não terá direito ao kit (somente Caneca)<br/><br/></b></p><label class="containerRadio" id="sidebyside">P<input type="radio" name="radioAlojamento" value="P"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">M<input type="radio" name="radioAlojamento" value="M"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">G<input type="radio" name="radioAlojamento" value="G"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">GG<input type="radio" name="radioAlojamento" value="GG"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">XG<input type="radio" name="radioAlojamento" value="XG"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">XGG<input type="radio" name="radioAlojamento" value="XGG"><span class="radioCheck"></span></label></br></br>';
+
+            $('#inputs_adicionais').append(input);  
       });
       $('#inputs_adicionais').delegate('a', 'click', function(e) {
         e.preventDefault();
@@ -109,7 +111,7 @@
     </script>
 
   <body style="background-image: url(images/bgloading.jpg); background-repeat:no-repeat; background-size: cover; background-clip: border-box;">
-      <form id="regForm" action="/action_page.php">
+      <form id="regForm" action="GHP-PGMNT/www/form_v2/class/class_index.php">
         <h1>16º Encontro - "De volta ao berço"</h1>
         <p>Associação dos Militares Inativos de Guaratinguetá e Adjacências</p>
         <p>R: Mórmons, no 51 – Pedregulho – Guaratinguetá/ SP – CEP: 12.515-100- tel: (12) 3125-7798/ 3125-7843</p>
@@ -145,13 +147,41 @@
       <div class="tab">
         <p><b>Eventos - Clique nos eventos que o veterano irá participar:</b></p>
           <label class="container">Encontro na EEAR (R$ XXX,XX)
-            <input type="checkbox">
+            <input type="checkbox" name = "encontroVet">
             <span class="checkmark"></span>
           </label>
           <label class="container">Churrasco (R$ XXX,XX)
-              <input type="checkbox">
+              <input type="checkbox" name = "churrascoVet" >
               <span class="checkmark"></span>
           </label>
+          <br/><br/>
+          <p><b>Selecione o tamanho da sua camiseta que irá compor o Kit Brinde (Camiseta, boné, bolsa, caneta e bloco de rascunho)
+             - ATENÇÂO: Caso participe somente do evento "Churrasco", este não terá direito ao kit (somente Caneca)<br/><br/></b></p>
+          <label class="containerRadio" id="sidebyside">P
+              <input type="radio" name="radioAlojamento" value="P">
+              <span class="radioCheck"></span>
+          </label>
+          <label class="containerRadio" id="sidebyside">M
+              <input type="radio" name="radioAlojamento" value="M">
+              <span class="radioCheck"></span>
+          </label>
+          <label class="containerRadio" id="sidebyside">G
+              <input type="radio" name="radioAlojamento" value="G">
+              <span class="radioCheck"></span>
+          </label>
+          <label class="containerRadio" id="sidebyside">GG
+              <input type="radio" name="radioAlojamento" value="GG">
+              <span class="radioCheck"></span>
+          </label>
+          <label class="containerRadio" id="sidebyside">XG
+              <input type="radio" name="radioAlojamento" value="XG">
+              <span class="radioCheck"></span>
+          </label>
+          <label class="containerRadio" id="sidebyside">XGG
+              <input type="radio" name="radioAlojamento" value="XGG">
+              <span class="radioCheck"></span>
+          </label>
+          <br/><br/>
       </div>
       <div class="tab">
         <p><b>Convidados - Clique no botão abaixo para adicionar um convidado, preencha os dados e clique nos eventos que irá participar:</b></p>
@@ -169,23 +199,24 @@
             <input type="radio" name="radioAlojamento" value="false">
             <span class="radioCheck"></span>
           </label>
+          <br/><br/>
       </div>
       <div class="tab">
-        <p><b>Itens Extra - Caso queira pedir itens extras, selecione aqui a quantidade e tamanho:</b></p>
+        <p><b>Itens Extra - Caso queira pedir itens extras, selecione aqui a quantidade e tamanho:<br/>Camiseta Extra : R$ XX,XX<br/>Boné Extra : R$ XX,XX</b></p>
         <br>
         <p><label><b>Camisetas Extras</b></label></p>
-        <p>P&nbsp;<input type="number" value="0" style="width: 10%"/>&nbsp;&nbsp;
-        M&nbsp;<input type="number" value="0" style="width: 10%"/>&nbsp;&nbsp;
-        M&nbsp;<input type="number" value="0" style="width: 10%"/>&nbsp;&nbsp;
-        GG&nbsp;<input type="number" value="0" style="width: 10%"/>&nbsp;&nbsp;
-        XG&nbsp;<input type="number" value="0" style="width: 10%"/>&nbsp;&nbsp;
-        XGG&nbsp;<input type="number" value="0" style="width: 10%"/></p>
+        <p>P&nbsp;<input type="number" name="cam_p" value="0" style="width: 10%"/>&nbsp;&nbsp;
+        M&nbsp;<input type="number" name="cam_m" value="0" style="width: 10%"/>&nbsp;&nbsp;
+        G&nbsp;<input type="number" name="cam_g" value="0" style="width: 10%"/>&nbsp;&nbsp;
+        GG&nbsp;<input type="number" name="cam_gg" value="0" style="width: 10%"/>&nbsp;&nbsp;
+        XG&nbsp;<input type="number" name="cam_xg" value="0" style="width: 10%"/>&nbsp;&nbsp;
+        XGG&nbsp;<input type="number" name="cam_xgg" value="0" style="width: 10%"/></p>
         <p><label><b>Bonés Extras</b></label></p>
-        <p>Tamanho único<input type="number" value="0" style="width: 10%"/></p>
+        <p>Tamanho único<input type="number" name="bone_extra" value="0" style="width: 10%"/></p>
       </div>
       <div class="tab">
           <p><b>Revisão - Por favor, verifique se todos os dados estão corretos. Caso queira mudar algo, clique em Voltar até o item desejado para alteração</b></p>
-          <p>COLOCAR TUDO DO FORM</p>
+          <p>SERÁ IMPLEMENTADO</p>
         </div>
 
       <div style="overflow:auto;">
