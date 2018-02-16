@@ -98,8 +98,8 @@ var input = '<label for="form-email">Acompanhante/Convidado '+ id +
               '</label><input maxlength="45" type="text2" name="acompanhante1Nome" placeholder="Nome" class="form-email form-control" id="acompanhante'+ id +
               'Nome"><input maxlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text2" name="acompanhante1Rg" placeholder="RG:" class="form-email form-control" id="acompanhante'+id+
               'Rg"> <input maxlength="45" type="text2" name="acompanhante1Parentesco" placeholder="Parentesco" class="form-email form-control" id="acompanhante'+id+
-              'Parentesco"><label class="container">Encontro na EEAR (R$ XXX,XX)<input type="checkbox" id="convidadoEncontro + '+id+'"><span class="checkmark"></span></label><label class="container">Churrasco R$ (XX,XXX)<input type="checkbox" id="convidadoConvidado + '+id+
-              '"><span class="checkmark"></span></label><p><b>Selecione o tamanho da camiseta que irá compor o Kit Brinde (Camiseta, boné, bolsa, caneta e bloco de rascunho) - ATENÇÂO: Caso participe somente do evento "Churrasco", este não terá direito ao kit (somente Caneca)<br/><br/></b></p><label class="containerRadio" id="sidebyside">P<input type="radio" name="radioAlojamento" value="P"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">M<input type="radio" name="radioAlojamento" value="M"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">G<input type="radio" name="radioAlojamento" value="G"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">GG<input type="radio" name="radioAlojamento" value="GG"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">XG<input type="radio" name="radioAlojamento" value="XG"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">XGG<input type="radio" name="radioAlojamento" value="XGG"><span class="radioCheck"></span></label></br></br>';
+              'Parentesco"><label class="container">Encontro na EEAR (R$ XXX,XX)<input type="checkbox" name="con_eventoEncontro" id="convidadoEncontro + '+id+'"><span class="checkmark"></span></label><label class="container">Churrasco R$ (XX,XXX)<input type="checkbox" name="con_eventoChurrasco" id="convidadoConvidado + '+id+
+              '"><span class="checkmark"></span></label><p><b>Selecione o tamanho da camiseta que irá compor o Kit Brinde (Camiseta, boné, bolsa, caneta e bloco de rascunho) - ATENÇÂO: Caso participe somente do evento "Churrasco", este não terá direito ao kit (somente Caneca)<br/><br/></b></p><label class="containerRadio" id="sidebyside">P<input type="radio" name="con_camiseta" value="P"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">M<input type="radio" name="con_camiseta" value="M"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">G<input type="radio" name="con_camiseta" value="G"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">GG<input type="radio" name="con_camiseta" value="GG"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">XG<input type="radio" name="con_camiseta" value="XG"><span class="radioCheck"></span></label><label class="containerRadio" id="sidebyside">XGG<input type="radio" name="con_camiseta" value="XGG"><span class="radioCheck"></span></label></br></br>';
 
             $('#inputs_adicionais').append(input);  
       });
@@ -120,17 +120,17 @@ var input = '<label for="form-email">Acompanhante/Convidado '+ id +
       <!-- Cada "tab" é um step do form: -->
       <div class="tab">
         <p><b>Dados Pessoais - Complete as informações corretamente:</b></p>
-        <p><input id="cpf"class="notNull" placeholder="CPF" oninput="this.className = ''" name="mil_cpf"></p>
+        <p><input id="cpf"class="notNull" placeholder="CPF" oninput="this.className = ''" name="mil_cpf" type="text" pattern="[0-9]+$"></p>
         <p><input placeholder="RG Civil" oninput="this.className = ''" name="mil_rgCivil"></p>
         <p><input placeholder="RG Militar" oninput="this.className = ''" name="mil_rgMilitar"></p>
         <p><input class="notNull" placeholder="Nome" oninput="this.className = ''" name="mil_nome"></p>
         <p><input placeholder="Nome de Guerra" oninput="this.className = ''" name="mil_nomeGuerra"></p>
         <p><input placeholder="Posto/Graduação" oninput="this.className = ''" name="mil_postoGrad"></p>
-        <p><input id="data" class="notNull" placeholder="Data de Formatura: DD/MM/AAAA" oninput="this.className = ''" name="mil_dataFormatura"></p>
+        <p><input id="data" class="notNull" placeholder="Data de Formatura: DD/MM/AAAA" oninput="this.className = ''" name="mil_dataFormatura" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"></p>
       </div>
       <div class="tab">
         <p><b>Endereço - Preencha o CEP para busca automática, logo em seguida insira o número e complemento (caso houver):</b></p>
-        <p><input id="cep" class="notNull" placeholder="CEP" oninput="this.className = ''" name="mil_cpf"></p>
+        <p><input id="cep" class="notNull" placeholder="CEP" oninput="this.className = ''" name="mil_cep" pattern="[0-9]+$"></p>
         <p><input id="rua" class="notNull" placeholder="Endereço" oninput="this.className = ''" name="mil_endereco"></p>
         <p><input placeholder="Numero" oninput="this.className = ''" name="mil_numeroEndereco"></p>
         <p><input placeholder="Complemento" oninput="this.className = ''" name="mil_complementoEndereco"></p>
@@ -147,38 +147,38 @@ var input = '<label for="form-email">Acompanhante/Convidado '+ id +
       <div class="tab">
         <p><b>Eventos - Clique nos eventos que o veterano irá participar:</b></p>
           <label class="container">Encontro na EEAR (R$ XXX,XX)
-            <input type="checkbox" name = "encontroVet">
+            <input type="checkbox" name = "mil_eventoEncontro">
             <span class="checkmark"></span>
           </label>
           <label class="container">Churrasco (R$ XXX,XX)
-              <input type="checkbox" name = "churrascoVet" >
+              <input type="checkbox" name = "mil_eventoChurrasco" >
               <span class="checkmark"></span>
           </label>
           <br/><br/>
           <p><b>Selecione o tamanho da sua camiseta que irá compor o Kit Brinde (Camiseta, boné, bolsa, caneta e bloco de rascunho)
              - ATENÇÂO: Caso participe somente do evento "Churrasco", este não terá direito ao kit (somente Caneca)<br/><br/></b></p>
           <label class="containerRadio" id="sidebyside">P
-              <input type="radio" name="radioAlojamento" value="P">
+              <input type="radio" name="mil_camiseta" value="P">
               <span class="radioCheck"></span>
           </label>
           <label class="containerRadio" id="sidebyside">M
-              <input type="radio" name="radioAlojamento" value="M">
+              <input type="radio" name="mil_camiseta" value="M">
               <span class="radioCheck"></span>
           </label>
           <label class="containerRadio" id="sidebyside">G
-              <input type="radio" name="radioAlojamento" value="G">
+              <input type="radio" name="mil_camiseta" value="G">
               <span class="radioCheck"></span>
           </label>
           <label class="containerRadio" id="sidebyside">GG
-              <input type="radio" name="radioAlojamento" value="GG">
+              <input type="radio" name="mil_camiseta" value="GG">
               <span class="radioCheck"></span>
           </label>
           <label class="containerRadio" id="sidebyside">XG
-              <input type="radio" name="radioAlojamento" value="XG">
+              <input type="radio" name="mil_camiseta" value="XG">
               <span class="radioCheck"></span>
           </label>
           <label class="containerRadio" id="sidebyside">XGG
-              <input type="radio" name="radioAlojamento" value="XGG">
+              <input type="radio" name="mil_camiseta" value="XGG">
               <span class="radioCheck"></span>
           </label>
           <br/><br/>
@@ -190,13 +190,14 @@ var input = '<label for="form-email">Acompanhante/Convidado '+ id +
           </fieldset>
       </div>
       <div class="tab">
+        <!--Alojamento na tabela ins_inscricao, dois radios, o true é pra SIM e  false para NAO-->
         <p><b>Alojamento - Atenção: Somente para convidados que morem fora do eixo Rio-São Paulo:</b></p>
           <label class="containerRadio">Sim, preciso de alojamento
-            <input type="radio" name="radioAlojamento" value="true">
+            <input type="radio" name="ins_alojamento" value="true">
             <span class="radioCheck"></span>
           </label>
           <label class="containerRadio">Não vou precisar
-            <input type="radio" name="radioAlojamento" value="false">
+            <input type="radio" name="ins_alojamento" value="false">
             <span class="radioCheck"></span>
           </label>
           <br/><br/>
@@ -205,14 +206,14 @@ var input = '<label for="form-email">Acompanhante/Convidado '+ id +
         <p><b>Itens Extra - Caso queira pedir itens extras, selecione aqui a quantidade e tamanho:<br/>Camiseta Extra : R$ XX,XX<br/>Boné Extra : R$ XX,XX</b></p>
         <br>
         <p><label><b>Camisetas Extras</b></label></p>
-        <p>P&nbsp;<input type="number" name="cam_p" value="0" style="width: 10%"/>&nbsp;&nbsp;
-        M&nbsp;<input type="number" name="cam_m" value="0" style="width: 10%"/>&nbsp;&nbsp;
-        G&nbsp;<input type="number" name="cam_g" value="0" style="width: 10%"/>&nbsp;&nbsp;
-        GG&nbsp;<input type="number" name="cam_gg" value="0" style="width: 10%"/>&nbsp;&nbsp;
-        XG&nbsp;<input type="number" name="cam_xg" value="0" style="width: 10%"/>&nbsp;&nbsp;
-        XGG&nbsp;<input type="number" name="cam_xgg" value="0" style="width: 10%"/></p>
+        <p>P&nbsp;<input type="number" name="ins_camisetaExtraP" value="0" min="0" style="width: 10%"/>&nbsp;&nbsp;
+        M&nbsp;<input type="number" name="ins_camisetaExtraM" value="0" min="0" style="width: 10%"/>&nbsp;&nbsp;
+        G&nbsp;<input type="number" name="ins_camisetaExtraG" value="0" min="0" style="width: 10%"/>&nbsp;&nbsp;
+        GG&nbsp;<input type="number" name="ins_camisetaExtraGG" value="0" min="0" style="width: 10%"/>&nbsp;&nbsp;
+        XG&nbsp;<input type="number" name="ins_camisetaExtraXG" value="0" min="0" style="width: 10%"/>&nbsp;&nbsp;
+        XGG&nbsp;<input type="number" name="ins_camisetaExtraXGG" value="0" min="0" style="width: 10%"/></p>
         <p><label><b>Bonés Extras</b></label></p>
-        <p>Tamanho único<input type="number" name="bone_extra" value="0" style="width: 10%"/></p>
+        <p>Tamanho único<input type="number" name="ins_boneExtra" value="0" style="width: 10%"/></p>
       </div>
       <div class="tab">
           <p><b>Revisão - Por favor, verifique se todos os dados estão corretos. Caso queira mudar algo, clique em Voltar até o item desejado para alteração</b></p>
